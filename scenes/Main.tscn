@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/Main.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/world_modules/module_1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/ModuleSpawner.gd" type="Script" id=4]
+[ext_resource path="res://scenes/world_modules/module_2.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=7]
+
+[node name="Main" type="Node"]
+script = ExtResource( 1 )
+distance_per_point = 5000
+
+[node name="ModuleSpawner" type="Node" parent="."]
+script = ExtResource( 4 )
+modules = [ ExtResource( 3 ), ExtResource( 5 ) ]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+max_turn_speed = 200
+move_speed = 50
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.653249, 0.757143, 0, -0.757143, 0.653249, 0, 68.4163, 85.3655 )
+current = true
+near = 0.12
+far = 300.0
+
+[node name="HUD" parent="." instance=ExtResource( 7 )]
+
+[connection signal="game_over_signal" from="Player" to="." method="_on_Player_game_over_signal"]
+[connection signal="restart_game" from="HUD" to="." method="_on_HUD_restart_game"]

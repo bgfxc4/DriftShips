@@ -1,0 +1,164 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://assets/models/ships/main_ship.fbx" type="PackedScene" id=3]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.678423, 1 )
+colors = PoolColorArray( 1, 0.909804, 0.286275, 1, 0.995117, 0.215738, 0, 1, 1, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+max_value = 72.0
+_data = [ Vector2( 0, 42.3818 ), 0.0, 13.9973, 0, 0, Vector2( 0.348515, 5.07272 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+
+[sub_resource type="ParticlesMaterial" id=6]
+next_pass = SubResource( 5 )
+
+[sub_resource type="Curve" id=7]
+max_value = 2.5
+_data = [ Vector2( 0, 2.5 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+next_pass = SubResource( 6 )
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3( 0, 1, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 16.74
+initial_velocity_random = 0.2
+linear_accel = 5.0
+linear_accel_random = 0.05
+linear_accel_curve = SubResource( 4 )
+scale = 0.0
+scale_random = 1.0
+scale_curve = SubResource( 8 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=10]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="CubeMesh" id=11]
+material = SubResource( 10 )
+
+[sub_resource type="ParticlesMaterial" id=12]
+next_pass = SubResource( 6 )
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3( 0, 1, 0 )
+spread = 180.0
+gravity = Vector3( 0, 60, 0 )
+initial_velocity = 16.74
+initial_velocity_random = 0.2
+linear_accel_random = 0.05
+linear_accel_curve = SubResource( 4 )
+scale = 0.0
+scale_random = 1.0
+scale_curve = SubResource( 8 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=13]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="CubeMesh" id=14]
+material = SubResource( 13 )
+
+[sub_resource type="BoxShape" id=15]
+extents = Vector3( 5.78088, 1.2092, 1 )
+
+[sub_resource type="Gradient" id=16]
+colors = PoolColorArray( 0.094986, 0.890375, 0.972656, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=17]
+gradient = SubResource( 16 )
+
+[sub_resource type="ParticlesMaterial" id=18]
+emission_shape = 2
+emission_box_extents = Vector3( 0.024, 0.1, 2 )
+direction = Vector3( 1, 0.7, 0 )
+spread = 38.12
+gravity = Vector3( 0, -50, 0 )
+initial_velocity = 15.0
+initial_velocity_random = 0.3
+color_ramp = SubResource( 17 )
+
+[sub_resource type="SpatialMaterial" id=19]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="CubeMesh" id=20]
+material = SubResource( 19 )
+size = Vector3( 0.2, 0.2, 0.2 )
+
+[sub_resource type="SpatialMaterial" id=21]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="CubeMesh" id=22]
+material = SubResource( 21 )
+size = Vector3( 0.2, 0.2, 0.2 )
+subdivide_width = 1
+
+[node name="Player" type="KinematicBody"]
+script = ExtResource( 2 )
+move_speed = 400
+
+[node name="ExplosionParticles" type="Particles" parent="."]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0 )
+cast_shadow = 0
+emitting = false
+amount = 200
+lifetime = 0.65
+one_shot = true
+explosiveness = 0.5
+process_material = SubResource( 9 )
+draw_pass_1 = SubResource( 11 )
+
+[node name="FireParticles" type="Particles" parent="."]
+transform = Transform( 0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0, 0 )
+cast_shadow = 0
+emitting = false
+amount = 130
+lifetime = 0.5
+process_material = SubResource( 12 )
+draw_pass_1 = SubResource( 14 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.303992, 8.31796 )
+aabb = AABB( -5.83759, -1.35178, -1, 11.6752, 2.70355, 2 )
+
+[node name="main_ship" parent="." instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 8.31796 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.265057, 8.31796 )
+shape = SubResource( 15 )
+
+[node name="DriftRightParticles" type="Particles" parent="."]
+transform = Transform( 0.970825, 0, 0.239788, 0, 1, 0, -0.239788, 0, 0.970825, -0.0109019, -0.577542, 10.7194 )
+cast_shadow = 0
+emitting = false
+amount = 300
+lifetime = 0.3
+process_material = SubResource( 18 )
+draw_pass_1 = SubResource( 20 )
+
+[node name="DriftLeftParticles" type="Particles" parent="."]
+transform = Transform( -0.985571, 0, 0.169264, 0, 1, 0, -0.169264, 0, -0.985571, -0.123748, -0.577542, 10.7465 )
+cast_shadow = 0
+emitting = false
+amount = 300
+lifetime = 0.3
+process_material = SubResource( 18 )
+draw_pass_1 = SubResource( 22 )
+
+[connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]

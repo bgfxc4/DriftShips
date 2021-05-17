@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/models/rocks/rock_1.fbx" type="PackedScene" id=1]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1.205, 0.934, 1.857 )
+
+[node name="Rock1" type="StaticBody" groups=[
+"obstacle",
+]]
+transform = Transform( 1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -0.120723, 0.939247, 0.29841 )
+shape = SubResource( 1 )
+
+[node name="rock_1" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0164664, 1.24347, 0.306096 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.138073, 0.698153, 0.298314 )
+aabb = AABB( -1.92239, -0.771413, -1.09847, 3.84477, 1.91197, 2.19694 )

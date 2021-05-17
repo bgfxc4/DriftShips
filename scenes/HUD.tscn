@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/fonts/pixelFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scripts/HUD.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/pixelFont.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 3 )
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchor_right = 1.0
+margin_top = 30.0
+margin_bottom = 249.0
+grow_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "100"
+align = 1
+valign = 1
+autowrap = true
+percent_visible = -1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DeathScreen" type="Panel" parent="."]
+visible = false
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 5.0
+margin_top = -414.0
+margin_right = 5.0
+margin_bottom = 582.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RestartButton" type="Button" parent="DeathScreen"]
+anchor_left = 0.4965
+anchor_top = 0.5
+anchor_right = 0.4965
+anchor_bottom = 0.5
+margin_left = -133.5
+margin_top = -35.5
+margin_right = 133.5
+margin_bottom = 35.5
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/disabled = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 1 )
+text = "restart"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="DeathScreen/RestartButton" to="." method="_on_RestartButton_pressed"]
