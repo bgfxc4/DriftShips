@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/Obstacles/Rocks/Rock3.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Obstacles/Rocks/Rock1.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Obstacles/Rocks/Rock2.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/module.gd" type="Script" id=4]
+[ext_resource path="res://resources/navmeshes/enemy_navmesh.tres" type="NavigationMesh" id=5]
 
 [sub_resource type="PlaneMesh" id=1]
 
@@ -11,18 +12,19 @@
 albedo_color = Color( 0.117647, 0.678431, 0.921569, 1 )
 metallic = 0.15
 
-[node name="module_1" type="Spatial"]
+[node name="module_2" type="Navigation"]
 script = ExtResource( 4 )
 
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
 aabb = AABB( -99.765, 0, -69.2895, 199.53, 0.1, 138.58 )
 
-[node name="Water" type="MeshInstance" parent="."]
+[node name="Obstacles" type="NavigationMeshInstance" parent="."]
+navmesh = ExtResource( 5 )
+
+[node name="Water" type="MeshInstance" parent="Obstacles"]
 transform = Transform( 100, 0, 0, 0, 1, 0, 0, 0, 70, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
-
-[node name="Obstacles" type="Spatial" parent="."]
 
 [node name="Rock1" parent="Obstacles" instance=ExtResource( 2 )]
 transform = Transform( 1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, -56.4809, 0, 11.5467 )

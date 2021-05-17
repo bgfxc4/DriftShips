@@ -1,4 +1,4 @@
-extends Spatial
+extends Navigation
 
 
 func _ready():

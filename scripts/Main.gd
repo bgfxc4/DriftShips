@@ -17,7 +17,6 @@ func _ready():
 	$ModuleSpawner.spawn_module()
 	$ModuleSpawner.spawn_module()
 
-
 func _process(delta):
 	$Camera.translation = Vector3($Camera.translation.x, $Camera.translation.y, min_cam_pos)
 	if ($Player.translation.z - cam_player_offs) < min_cam_pos:

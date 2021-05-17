@@ -11,7 +11,7 @@
 script = ExtResource( 1 )
 distance_per_point = 5000
 
-[node name="ModuleSpawner" type="Node" parent="."]
+[node name="ModuleSpawner" type="Spatial" parent="."]
 script = ExtResource( 4 )
 modules = [ ExtResource( 3 ), ExtResource( 5 ) ]
 
