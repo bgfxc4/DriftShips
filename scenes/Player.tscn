@@ -110,7 +110,7 @@ subdivide_width = 1
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 2 )
-move_speed = 400
+move_speed = 0
 
 [node name="ExplosionParticles" type="Particles" parent="."]
 transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0 )

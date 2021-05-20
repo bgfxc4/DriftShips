@@ -17,7 +17,6 @@ modules = [ ExtResource( 3 ), ExtResource( 5 ) ]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 max_turn_speed = 200
-move_speed = 50
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.653249, 0.757143, 0, -0.757143, 0.653249, 0, 68.4163, 85.3655 )
