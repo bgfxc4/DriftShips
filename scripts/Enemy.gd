@@ -3,7 +3,7 @@ extends KinematicBody
 var path = []
 var path_node = 0
 
-var speed = 10
+var speed = 20
 var current_nav = null
 var current_target_pos
 var moving = false
@@ -18,6 +18,8 @@ func _physics_process(delta):
 			path_node += 1
 			if path_node >= path.size():
 				moving = false
+				if current_nav.last_module != null:
+					set_target(current_nav.last_module, Vector3(0, 0, 70))
 		else:
 			move_and_slide(direction.normalized() * speed, Vector3.UP)
 
@@ -27,7 +29,7 @@ func set_target(nav, target_pos):
 	current_target_pos = target_pos
 	path = nav.get_simple_path(translation - current_nav.translation, target_pos)
 	path_node = 0
-	print("current pos: ", translation, " target pos: ", target_pos, " pos of nav: ", nav.transform.origin, " path length: ",  path.size(), " path: ", path)
+	# print("current pos: ", translation, " target pos: ", target_pos, " pos of nav: ", nav.transform.origin, " path length: ",  path.size(), " path: ", path)
 	#debug_mark_path()
 
 func _on_VisibilityNotifier_screen_exited():
@@ -42,7 +44,7 @@ func debug_mark_path():
 	var marker_instance = marker.instance()
 	get_parent().get_parent().add_child(marker_instance)
 	marker_instance.translation = translation - current_nav.translation + current_nav.translation
-	# for node in path:
-	# 	marker_instance = marker.instance()
-	# 	get_parent().get_parent().add_child(marker_instance)
-	# 	marker_instance.translation = current_nav.translation + node
+	for node in path:
+		marker_instance = marker.instance()
+		get_parent().get_parent().add_child(marker_instance)
+		marker_instance.translation = current_nav.translation + node
