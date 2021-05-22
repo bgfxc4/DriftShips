@@ -22,6 +22,7 @@ func _physics_process(delta):
 					set_target(current_nav.last_module, Vector3(0, 0, 70))
 		else:
 			move_and_slide(direction.normalized() * speed, Vector3.UP)
+			look_at(current_nav.translation + path[path_node], Vector3.UP)
 
 func set_target(nav, target_pos):
 	moving = true
@@ -34,10 +35,6 @@ func set_target(nav, target_pos):
 
 func _on_VisibilityNotifier_screen_exited():
 	queue_free()
-
-func _on_Timer_timeout():
-	if current_nav == null || !moving: return
-	#set_target(current_nav, Vector3(global_transform.origin.x, current_target_pos.y, current_target_pos.z))
 
 func debug_mark_path():
 	var marker = load("res://scenes/TestScenes/TestMarker.tscn")
