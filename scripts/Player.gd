@@ -29,12 +29,20 @@ func _process(delta):
 		elif $main_ship.rotation_degrees.x < steer * 20:
 			$main_ship.rotation_degrees += Vector3(40 * delta, 0, 0)
 		
-		# move the ship and check for collision
+		# move the ship and check for collision		
 		var col = move_and_collide(Vector3(0, 0, -move_speed * delta).rotated(Vector3(0, 1, 0), deg2rad(rotation_degrees.y + steer * 45)))
 		if col:
 			if col.collider.is_in_group("obstacle"):
 				explode(col.position)
 				game_over()
+			elif col.collider.is_in_group("Enemy"):
+				if col.local_shape.name == "CollisionShapeBack" && steer != 0:
+					col.collider.queue_free()
+					get_tree().get_root().get_child(0).destroyed_enemy()
+				else:
+					explode(col.position)
+					col.collider.collision()
+					game_over()
 
 		# enable or disable drifting particles
 		if steer == 1:

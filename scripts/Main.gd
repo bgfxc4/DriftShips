@@ -30,6 +30,9 @@ func increase_score(val):
 	$HUD.set_score(score)
 	dist_to_next_point = distance_per_point
 
+func destroyed_enemy():
+	increase_score(20)
+
 func _on_Player_game_over_signal():
 	$HUD.game_over()
 

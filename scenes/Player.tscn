@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://assets/models/ships/main_ship.fbx" type="PackedScene" id=3]
@@ -75,7 +75,10 @@ vertex_color_use_as_albedo = true
 material = SubResource( 13 )
 
 [sub_resource type="BoxShape" id=15]
-extents = Vector3( 5.78088, 1.2092, 1 )
+extents = Vector3( 3.19185, 1.2092, 1 )
+
+[sub_resource type="BoxShape" id=23]
+extents = Vector3( 2.53742, 1.2092, 1 )
 
 [sub_resource type="Gradient" id=16]
 colors = PoolColorArray( 0.094986, 0.890375, 0.972656, 1, 1, 1, 1, 1 )
@@ -139,9 +142,13 @@ aabb = AABB( -5.83759, -1.35178, -1, 11.6752, 2.70355, 2 )
 [node name="main_ship" parent="." instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 8.31796 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.265057, 8.31796 )
+[node name="CollisionShapeFront" type="CollisionShape" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.265057, 5.50331 )
 shape = SubResource( 15 )
+
+[node name="CollisionShapeBack" type="CollisionShape" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.265057, 11.3261 )
+shape = SubResource( 23 )
 
 [node name="DriftRightParticles" type="Particles" parent="."]
 transform = Transform( 0.970825, 0, 0.239788, 0, 1, 0, -0.239788, 0, 0.970825, -0.0109019, -0.577542, 10.7194 )
