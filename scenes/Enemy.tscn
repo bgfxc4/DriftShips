@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/models/enemys/Boat.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://assets/models/enemys/boat.material" type="Material" id=3]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.589929, 0.759026, 2.84878 )
 
 [node name="Enemy" type="KinematicBody" groups=[
 "Enemy",
@@ -17,5 +20,9 @@ aabb = AABB( -2.61068, -0.101981, -0.562292, 5.22136, 1.36412, 1.12458 )
 transform = Transform( -2.18557e-10, 0, 0.005, 0, 0.005, 0, -0.005, 0, -2.18557e-10, 0, 0, 0 )
 mesh = ExtResource( 2 )
 material/0 = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.780298, 0.119169 )
+shape = SubResource( 1 )
 
 [connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]

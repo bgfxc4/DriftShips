@@ -13,6 +13,10 @@ func _ready():
 
 func _physics_process(delta):
 	if path_node < path.size():
+		if current_nav == null || !is_instance_valid(current_nav):
+			queue_free()
+			return
+		
 		var direction = (current_nav.translation + path[path_node] - translation)
 		if direction.length() < 1:
 			path_node += 1
@@ -22,16 +26,16 @@ func _physics_process(delta):
 					set_target(current_nav.last_module, Vector3(0, 0, 70))
 		else:
 			move_and_slide(direction.normalized() * speed, Vector3.UP)
+			# add_central_force(direction.normalized() * speed)
 			look_at(current_nav.translation + path[path_node], Vector3.UP)
 
 func set_target(nav, target_pos):
+	if nav == null: queue_free()
 	moving = true
 	current_nav = nav
 	current_target_pos = target_pos
 	path = nav.get_simple_path(translation - current_nav.translation, target_pos)
 	path_node = 0
-	# print("current pos: ", translation, " target pos: ", target_pos, " pos of nav: ", nav.transform.origin, " path length: ",  path.size(), " path: ", path)
-	#debug_mark_path()
 
 func _on_VisibilityNotifier_screen_exited():
 	queue_free()

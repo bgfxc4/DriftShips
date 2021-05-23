@@ -14,13 +14,16 @@ func _ready():
 func _process(delta):
 	if !is_game_over:
 		# turn the ship
-		if turn_speed > steer * max_turn_speed:
+		if steer == 0 && ((turn_speed > 0 && (turn_speed - 1000 * delta) < 0) || (turn_speed < 0 && (turn_speed + 1000 * delta) > 0)):
+			turn_speed = 0
+		elif turn_speed > steer * max_turn_speed:
 			turn_speed -= 1000 * delta
 		elif turn_speed < steer * max_turn_speed:
 			turn_speed += 1000 * delta
+
 		rotation_degrees = Vector3(0, fmod(rotation_degrees.y + delta * -turn_speed, 360), 0)
 
-		# rotating the ship as its drifting
+		# tilting the ship as its drifting
 		if $main_ship.rotation_degrees.x > steer * 20:
 			$main_ship.rotation_degrees -= Vector3(40 * delta, 0, 0)
 		elif $main_ship.rotation_degrees.x < steer * 20:
