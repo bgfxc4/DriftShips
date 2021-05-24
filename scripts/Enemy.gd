@@ -30,7 +30,10 @@ func _physics_process(delta):
 			look_at(current_nav.translation + path[path_node], Vector3.UP)
 
 func set_target(nav, target_pos):
-	if nav == null || !is_instance_valid(nav): queue_free()
+	if nav == null || !is_instance_valid(nav): 
+		queue_free()
+		return
+		
 	moving = true
 	current_nav = nav
 	current_target_pos = target_pos

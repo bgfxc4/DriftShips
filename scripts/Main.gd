@@ -1,5 +1,11 @@
 extends Node
 
+enum GAME_OVER_CODES {
+	enemy_col,
+	obstacle_col,
+	exited_screen
+}
+
 export var distance_per_point = 100
 
 var min_cam_pos
@@ -33,8 +39,8 @@ func increase_score(val):
 func destroyed_enemy():
 	increase_score(20)
 
-func _on_Player_game_over_signal():
-	$HUD.game_over()
+func _on_Player_game_over_signal(code):
+	$HUD.game_over(code)
 
 func restart_game():
 	get_tree().reload_current_scene()
