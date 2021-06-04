@@ -18,6 +18,7 @@ func set_hint_text(text):
 	$Hint.text = "Hint:\n" + text
 
 func game_over_code_to_text(code):
+	if get_tree() == null: return "An Error occured"
 	var main = get_tree().get_root().get_child(0)
 	if code == main.GAME_OVER_CODES.enemy_col:
 		return "Use the back part of your ship while drifting to destroy enemies."

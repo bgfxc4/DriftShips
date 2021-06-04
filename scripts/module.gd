@@ -10,5 +10,5 @@ func _on_VisibilityNotifier_screen_exited():
 func spawn_enemy():
 	var instance = enemy.instance()
 	get_parent().add_child(instance)
-	instance.translation = translation - Vector3((randi() % 200) - 100, 0, 70)
+	instance.global_transform.origin = translation - Vector3((randi() % 200) - 100, 0, 70)
 	instance.set_target(self, Vector3((randi() % 200) - 100, 0, 70))

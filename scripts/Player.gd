@@ -38,10 +38,11 @@ func _process(delta):
 			elif col.collider.is_in_group("Enemy"):
 				if col.local_shape.name == "CollisionShapeBack" && steer != 0:
 					col.collider.queue_free()
+					col.collider.collision_launch(col)
 					get_tree().get_root().get_child(0).destroyed_enemy()
 				else:
 					explode(col.position)
-					col.collider.collision()
+					col.collider.collision(col)
 					game_over(get_tree().get_root().get_child(0).GAME_OVER_CODES.enemy_col)
 
 		# enable or disable drifting particles
@@ -86,6 +87,6 @@ func game_over(code):
 	is_game_over = true
 	emit_signal("game_over_signal", code)
 
-func _on_VisibilityNotifier_screen_exited():
-	if is_game_over: return
+func _on_VisibilityNotifier_camera_exited(camera):
+	if is_game_over || get_tree() == null || !is_instance_valid(get_tree()): return
 	game_over(get_tree().get_root().get_child(0).GAME_OVER_CODES.exited_screen)

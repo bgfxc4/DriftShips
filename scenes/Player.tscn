@@ -168,4 +168,4 @@ lifetime = 0.3
 process_material = SubResource( 18 )
 draw_pass_1 = SubResource( 22 )
 
-[connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]
+[connection signal="camera_exited" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_camera_exited"]

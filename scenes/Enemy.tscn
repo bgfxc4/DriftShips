@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/models/enemys/Boat.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://assets/models/enemys/boat.material" type="Material" id=3]
 
-[sub_resource type="BoxShape" id=1]
+[sub_resource type="BoxShape" id=2]
 extents = Vector3( 0.589929, 0.759026, 2.84878 )
 
 [node name="Enemy" type="KinematicBody" groups=[
@@ -23,6 +23,6 @@ material/0 = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.780298, 0.119169 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]

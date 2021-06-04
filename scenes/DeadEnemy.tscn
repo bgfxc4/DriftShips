@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/DeadEnemy.gd" type="Script" id=1]
+[ext_resource path="res://assets/models/enemys/Boat.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://assets/models/enemys/boat.material" type="Material" id=3]
+
+[sub_resource type="PhysicsMaterial" id=1]
+rough = true
+
+[node name="DeadEnemy" type="RigidBody" groups=[
+"Enemy",
+]]
+mass = 2.55102
+physics_material_override = SubResource( 1 )
+script = ExtResource( 1 )
+
+[node name="Boat" type="MeshInstance" parent="."]
+transform = Transform( -2.18557e-10, 0, 0.005, 0, 0.005, 0, -0.005, 0, -2.18557e-10, 0, 0, 0 )
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 3 )
