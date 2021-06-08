@@ -7,6 +7,9 @@ export var max_turn_speed = 1
 var turn_speed = 0
 export var move_speed = 1
 var is_game_over = false
+var fuel_loss_rate = 1
+
+var fuel = 100
 
 func _ready():
 	pass
@@ -55,6 +58,13 @@ func _process(delta):
 		else:
 			$DriftRightParticles.emitting = false
 			$DriftLeftParticles.emitting = false
+				
+		fuel -= (fuel_loss_rate * delta) * 4
+		get_node("/root/Main/HUD").set_fuel_bar(fuel)
+		
+		if fuel <= 0:
+			game_over(get_tree().get_root().get_child(0).GAME_OVER_CODES.no_fuel)
+		
 	else:
 		$DriftRightParticles.emitting = false
 		$DriftLeftParticles.emitting = false

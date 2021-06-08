@@ -15,4 +15,3 @@ func launch(pos, normal):
 	print("asdasdasd")
 	t.queue_free()
 	queue_free()
-

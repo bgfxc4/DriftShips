@@ -3,7 +3,8 @@ extends Node
 enum GAME_OVER_CODES {
 	enemy_col,
 	obstacle_col,
-	exited_screen
+	exited_screen,
+	no_fuel
 }
 
 export var distance_per_point = 100

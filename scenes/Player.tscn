@@ -77,16 +77,16 @@ material = SubResource( 13 )
 [sub_resource type="BoxShape" id=15]
 extents = Vector3( 3.19185, 1.2092, 1 )
 
-[sub_resource type="BoxShape" id=23]
+[sub_resource type="BoxShape" id=16]
 extents = Vector3( 2.53742, 1.2092, 1 )
 
-[sub_resource type="Gradient" id=16]
+[sub_resource type="Gradient" id=17]
 colors = PoolColorArray( 0.094986, 0.890375, 0.972656, 1, 1, 1, 1, 1 )
 
-[sub_resource type="GradientTexture" id=17]
-gradient = SubResource( 16 )
+[sub_resource type="GradientTexture" id=18]
+gradient = SubResource( 17 )
 
-[sub_resource type="ParticlesMaterial" id=18]
+[sub_resource type="ParticlesMaterial" id=19]
 emission_shape = 2
 emission_box_extents = Vector3( 0.024, 0.1, 2 )
 direction = Vector3( 1, 0.7, 0 )
@@ -94,20 +94,20 @@ spread = 38.12
 gravity = Vector3( 0, -50, 0 )
 initial_velocity = 15.0
 initial_velocity_random = 0.3
-color_ramp = SubResource( 17 )
+color_ramp = SubResource( 18 )
 
-[sub_resource type="SpatialMaterial" id=19]
+[sub_resource type="SpatialMaterial" id=20]
 vertex_color_use_as_albedo = true
 
-[sub_resource type="CubeMesh" id=20]
-material = SubResource( 19 )
+[sub_resource type="CubeMesh" id=21]
+material = SubResource( 20 )
 size = Vector3( 0.2, 0.2, 0.2 )
 
-[sub_resource type="SpatialMaterial" id=21]
+[sub_resource type="SpatialMaterial" id=22]
 vertex_color_use_as_albedo = true
 
-[sub_resource type="CubeMesh" id=22]
-material = SubResource( 21 )
+[sub_resource type="CubeMesh" id=23]
+material = SubResource( 22 )
 size = Vector3( 0.2, 0.2, 0.2 )
 subdivide_width = 1
 
@@ -148,7 +148,7 @@ shape = SubResource( 15 )
 
 [node name="CollisionShapeBack" type="CollisionShape" parent="."]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.265057, 11.3261 )
-shape = SubResource( 23 )
+shape = SubResource( 16 )
 
 [node name="DriftRightParticles" type="Particles" parent="."]
 transform = Transform( 0.970825, 0, 0.239788, 0, 1, 0, -0.239788, 0, 0.970825, -0.0109019, -0.577542, 10.7194 )
@@ -156,8 +156,8 @@ cast_shadow = 0
 emitting = false
 amount = 300
 lifetime = 0.3
-process_material = SubResource( 18 )
-draw_pass_1 = SubResource( 20 )
+process_material = SubResource( 19 )
+draw_pass_1 = SubResource( 21 )
 
 [node name="DriftLeftParticles" type="Particles" parent="."]
 transform = Transform( -0.985571, 0, 0.169264, 0, 1, 0, -0.169264, 0, -0.985571, -0.123748, -0.577542, 10.7465 )
@@ -165,7 +165,7 @@ cast_shadow = 0
 emitting = false
 amount = 300
 lifetime = 0.3
-process_material = SubResource( 18 )
-draw_pass_1 = SubResource( 22 )
+process_material = SubResource( 19 )
+draw_pass_1 = SubResource( 23 )
 
 [connection signal="camera_exited" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_camera_exited"]
